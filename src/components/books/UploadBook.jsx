@@ -33,7 +33,7 @@ const GetHelpPopup = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/support/request', {
+      const response = await fetch(`${BACKEND_URL}/api/support/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -30,7 +30,7 @@ const GetHelpPopup = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/support/request', {
+      const response = await fetch(`${BACKEND_URL}/api/support/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -297,7 +297,7 @@ const BookUpdateModal = ({ book, onClose, onUpdate }) => {
       if (newImage) formDataToSend.append('image', newImage);
       if (newVideo) formDataToSend.append('video', newVideo);
 
-      const response = await axios.put(`/api/books/${book.id}`, formDataToSend, {
+      const response = await axios.put(`${BACKEND_URL}/api/books/${book.id}`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -617,7 +617,7 @@ const SellerBooks = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('/api/auth/me', {
+        const response = await axios.get(`${BACKEND_URL}/api/auth/me`, {
           withCredentials: true
         });
         if (response.data) {
@@ -631,7 +631,7 @@ const SellerBooks = () => {
 
     const fetchProfilePicture = async () => {
       try {
-        const res = await fetch('/api/auth/profile-picture', {
+        const res = await fetch(`${BACKEND_URL}/api/auth/profile-picture`, {
           credentials: 'include',
         });
         const data = await res.json();
@@ -645,7 +645,7 @@ const SellerBooks = () => {
 
     const fetchBooks = async () => {
       try {
-        const res = await axios.get('/api/books/', {
+        const res = await axios.get(`${BACKEND_URL}/api/books/`, {
           withCredentials: true
         });
         setBooks(res.data);
@@ -670,7 +670,7 @@ const SellerBooks = () => {
 
   const handleUpdateBook = async () => {
     try {
-      const res = await axios.get('/api/books/', {
+      const res = await axios.get(`${BACKEND_URL}/api/books/`, {
         withCredentials: true
       });
       setBooks(res.data);
@@ -682,7 +682,7 @@ const SellerBooks = () => {
 
   const handleDeleteBook = async (bookId) => {
     try {
-      await axios.delete(`/api/books/${bookId}`, {
+      await axios.delete(`${BACKEND_URL}/api/books/${bookId}`, {
         withCredentials: true
       });
       setBooks(books.filter(book => book.id !== bookId));
@@ -702,7 +702,7 @@ const SellerBooks = () => {
       if (filters.category) params.append('category', filters.category);
       if (filters.area) params.append('area', filters.area);
       
-      const res = await axios.get(`/api/books/filter?${params.toString()}`, {
+      const res = await axios.get(`${BACKEND_URL}/api/books/filter?${params.toString()}`, {
         withCredentials: true
       });
       
@@ -729,7 +729,7 @@ const SellerBooks = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
       navigate('/LandingPage');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -1001,7 +1001,7 @@ const SellerBooks = () => {
                     {book.image_path ? (
                       <>
                         <img
-                          src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/books/uploads/${book.image_path}`}
+                          src={`${process.env.REACT_APP_BACKEND_URL || `${BACKEND_URL}`}/api/books/uploads/${book.image_path}`}
                           alt={book.book_name || book.name}
                           className="w-full h-full object-cover rounded-t-2xl"
                           onError={(e) => {
@@ -1022,8 +1022,8 @@ const SellerBooks = () => {
                     {book.video_path && (
                       <button
                         onClick={() => {
-                          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-                          const fullUrl = `${backendUrl}/api/books/uploads/${book.video_path}`;
+                          // const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+                          const fullUrl = `${BACKEND_URL}/api/books/uploads/${book.video_path}`;
                           setVideoToPreview(fullUrl);
                         }}
                         className="absolute top-2 right-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full flex items-center hover:bg-blue-200 transition"
