@@ -12,7 +12,7 @@ export default function ForgotPassword() {
     setStatus("");
 
     try {
-      const res = await fetch("/api/reset/request", {
+      const res = await fetch(`${ BACKEND_URL}/api/reset/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

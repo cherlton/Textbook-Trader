@@ -34,7 +34,7 @@ export default function VerifyOTP() {
     }
 
     try {
-      const res = await fetch("/api/auth/whatsapp/verify-otp", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/whatsapp/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, cell, otp }),

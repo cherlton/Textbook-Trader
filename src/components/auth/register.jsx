@@ -58,7 +58,7 @@ if (!nameRegex.test(form.name) || !nameRegex.test(form.surname)) {
   });
 
   try {
-    const res = await fetch("/api/auth/register", {
+    const res = await fetch(`${BACKEND_URL}/api/auth/register`, {
       method: "POST",
       body: formData,
     });
