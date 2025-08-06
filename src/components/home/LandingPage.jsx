@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import videoBack from '../../backgroundVideo/video_back.mp4';
+import videoBack from '../../../public/video_back.mp4';
 
 const LandingPage = () => {
   const navigate = useNavigate();
