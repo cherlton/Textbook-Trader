@@ -7,6 +7,8 @@ import {
   FiClock,
   FiUser
 } from 'react-icons/fi';
+import BACKEND_URL from '../../config';
+
 
 const OrdersList = () => {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const OrdersList = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        const endpoint = view === 'user' ? '/api/orders/user' : '/api/orders/seller';
+        const endpoint = view === 'user' ? `${BACKEND_URL}/api/orders/user` : `${BACKEND_URL}/api/orders/seller`;
         const response = await axios.get(endpoint, {
           withCredentials: true
         });

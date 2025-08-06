@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import BACKEND_URL from '../../config';
 
 export default function VerifyOTP() {
   const [otp, setOtp] = useState("");

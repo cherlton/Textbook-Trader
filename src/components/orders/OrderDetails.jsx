@@ -13,6 +13,7 @@ import {
   FiMail,
   FiUser
 } from 'react-icons/fi';
+import BACKEND_URL from '../../config';
 
 const OrderDetails = () => {
   const { orderId } = useParams();
@@ -25,7 +26,7 @@ const OrderDetails = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`/api/orders/${orderId}`, {
+        const response = await axios.get(`${BACKEND_URL}/api/orders/${orderId}`, {
           withCredentials: true
         });
         
@@ -103,12 +104,12 @@ const OrderDetails = () => {
   const handleStatusUpdate = async (newStatus) => {
     try {
       await axios.put(
-        `/api/orders/${orderId}/status`,
+        `${BACKEND_URL}/orders/${orderId}/status`,
         { status: newStatus },
         { withCredentials: true }
       );
       // Refresh order details
-      const response = await axios.get(`/api/orders/${orderId}`, {
+      const response = await axios.get(`${BACKEND_URL}/api/orders/${orderId}`, {
         withCredentials: true
       });
       setOrder(response.data);

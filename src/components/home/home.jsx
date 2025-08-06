@@ -8,6 +8,7 @@ import {
   FiMail, FiPhone, FiUpload, FiClipboard
 } from "react-icons/fi";
 
+import BACKEND_URL from '../../config';
 
 import {  FiCheckCircle } from 'react-icons/fi';
 
@@ -33,7 +34,7 @@ const GetHelpPopup = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/support/request', {
+      const response = await fetch(`${BACKEND_URL}/api/support/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -255,7 +256,7 @@ const SellerBooks = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('/api/auth/me', {
+        const response = await axios.get(`${BACKEND_URL}/api/auth/me`, {
           withCredentials: true
         });
         if (response.data) {
@@ -269,7 +270,7 @@ const SellerBooks = () => {
 
     const fetchProfilePicture = async () => {
       try {
-        const res = await fetch('/api/auth/profile-picture', {
+        const res = await fetch(`${BACKEND_URL}/api/auth/profile-picture`, {
           credentials: 'include',
         });
         const data = await res.json();
@@ -283,7 +284,7 @@ const SellerBooks = () => {
 
     const fetchBooks = async () => {
       try {
-        const res = await axios.get('/api/books/all', {
+        const res = await axios.get(`${BACKEND_URL}/api/books/all`, {
           withCredentials: true
         });
         setBooks(res.data);
@@ -316,7 +317,7 @@ const SellerBooks = () => {
       if (filters.category) params.append('category', filters.category);
       if (filters.area) params.append('area', filters.area);
       
-      const res = await axios.get(`/api/books/all/filter?${params.toString()}`, {
+      const res = await axios.get(`${BACKEND_URL}/api/books/all/filter?${params.toString()}`, {
         withCredentials: true
       });
       
@@ -344,7 +345,7 @@ const SellerBooks = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
       navigate('/LandingPage');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -353,7 +354,7 @@ const SellerBooks = () => {
 
 const handleAddToCart = async (bookId) => {
   try {
-    await axios.post('/api/cart/add', { book_id: bookId }, { withCredentials: true });
+    await axios.post(`${BACKEND_URL}/api/cart/add`, { book_id: bookId }, { withCredentials: true });
     setShowSuccessToast(true);
     setTimeout(() => setShowSuccessToast(false), 2000); // auto hide after 2 sec
   } catch (error) {
@@ -368,7 +369,7 @@ const handleAddToCart = async (bookId) => {
     setLoadingOwner(true);
     
     try {
-      const response = await axios.get(`/api/books/${book.id}/owner`, {
+      const response = await axios.get(`${BACKEND_URL}/api/books/${book.id}/owner`, {
         withCredentials: true
       });
       setOwnerDetails(response.data);
@@ -404,7 +405,7 @@ const handleAddToCart = async (bookId) => {
               <div>
                 {book.image_path && (
                   <img
-                    src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/books/uploads/${book.image_path}`}
+                    src={`${process.env.REACT_APP_BACKEND_URL || `${BACKEND_URL}`}/api/books/uploads/${book.image_path}`}
                     alt={book.name}
                     className="w-full rounded-lg mb-4"
                   />
@@ -744,7 +745,7 @@ const handleAddToCart = async (bookId) => {
                     {book.image_path ? (
                       <>
                         <img
-                          src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/books/uploads/${book.image_path}`}
+                          src={`${process.env.REACT_APP_BACKEND_URL || `${BACKEND_URL}`}/api/books/uploads/${book.image_path}`}
                           alt={book.book_name || book.name}
                           className="w-full h-full object-cover rounded-t-2xl"
                           onError={(e) => {
@@ -766,7 +767,7 @@ const handleAddToCart = async (bookId) => {
                       <button
                         onClick={() => {
                           const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-                          const fullUrl = `${backendUrl}/api/books/uploads/${book.video_path}`;
+                          const fullUrl = `${BACKEND_URL}/api/books/uploads/${book.video_path}`;
                           setVideoToPreview(fullUrl);
                         }}
                         className="absolute top-2 right-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full flex items-center hover:bg-blue-200 transition"

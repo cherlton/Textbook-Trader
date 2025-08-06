@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiLogOut, FiUser, FiHome, FiTruck, FiPackage, FiClock, FiCheckCircle, FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BACKEND_URL from '../../config';
 
 const CourierDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -16,7 +17,7 @@ const CourierDashboard = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/api/courier/auth/profile', { withCredentials: true });
+        const response = await axios.get(`${BACKEND_URL}/api/courier/auth/profile`, { withCredentials: true });
         setProfile(response.data.courier);
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -31,7 +32,7 @@ const CourierDashboard = () => {
     const fetchOrders = async () => {
       setLoading(true);
       try {
-        let url = '/api/courier/orders';
+        let url = `${BACKEND_URL}/api/courier/orders`;
         if (filter !== 'all') {
           url += `?status=${filter}`;
         }
@@ -52,7 +53,7 @@ const CourierDashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/courier/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${BACKEND_URL}/api/courier/auth/logout`, {}, { withCredentials: true });
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -62,13 +63,13 @@ const CourierDashboard = () => {
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `/api/courier/orders/${orderId}/status`,
+        `${BACKEND_URL}/api/courier/orders/${orderId}/status`,
         { status: newStatus },
         { withCredentials: true }
       );
       
       // Refresh orders after update
-      const response = await axios.get('http://localhost:5000/api/courier/orders', { withCredentials: true });
+      const response = await axios.get(`${BACKEND_URL}/api/courier/orders`, { withCredentials: true });
       setOrders(response.data);
       setSelectedOrder(null);
     } catch (error) {
@@ -162,7 +163,7 @@ const CourierDashboard = () => {
     useEffect(() => {
       const fetchOrderDetails = async () => {
         try {
-          const response = await axios.get(`/api/courier/orders/${order.id}`, { withCredentials: true });
+          const response = await axios.get(`${BACKEND_URL}/api/courier/orders/${order.id}`, { withCredentials: true });
           setDetails(response.data);
         } catch (error) {
           console.error('Error fetching order details:', error);
@@ -227,7 +228,7 @@ const CourierDashboard = () => {
                       <div key={item.book_id} className="flex items-start p-3 border-b border-gray-100">
                         {item.image_path && (
                           <img
-                            src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/books/uploads/${item.image_path}`}
+                            src={`${process.env.REACT_APP_BACKEND_URL || `${BACKEND_URL}`}/api/books/uploads/${item.image_path}`}
                             alt={item.book_name}
                             className="w-16 h-16 object-cover rounded mr-3"
                           />
@@ -335,7 +336,7 @@ const CourierDashboard = () => {
           form.append('profile_picture', profilePic);
         }
 
-        const response = await axios.put('/api/courier/auth/profile', form, {
+        const response = await axios.put(`${BACKEND_URL}/api/courier/auth/profile`, form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
@@ -371,7 +372,7 @@ const CourierDashboard = () => {
             <div className="relative">
               {profile?.profile_picture ? (
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/courier/auth/uploads/${profile.profile_picture}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL || `${BACKEND_URL}`}/api/courier/auth/uploads/${profile.profile_picture}`}
                   alt="Profile"
                   className="w-20 h-20 rounded-full object-cover border-2 border-blue-600"
                 />
@@ -513,7 +514,7 @@ const CourierDashboard = () => {
     useEffect(() => {
       const fetchStats = async () => {
         try {
-          const response = await axios.get('/api/courier/orders', { withCredentials: true });
+          const response = await axios.get(`${BACKEND_URL}/api/courier/orders`, { withCredentials: true });
           const allOrders = response.data;
           
           setStats({

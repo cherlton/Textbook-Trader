@@ -5,6 +5,7 @@ import { FiLogOut, FiShoppingCart, FiDownload,FiTrash2,FiUpload, FiPlus, FiMinus
 import logo from '../../logo/logo.png';
 import {useLocation } from "react-router-dom";
 import {  FiCheckCircle } from 'react-icons/fi';
+import BACKEND_URL from '../../config';
 
 
 const GetHelpPopup = ({ onClose }) => {
@@ -27,7 +28,7 @@ const GetHelpPopup = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/support/request', {
+      const response = await fetch(`${BACKEND_URL}/api/support/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -197,7 +198,7 @@ const CartPage = () => {
   useEffect(() => {
    const fetchUserInfo = async () => {
       try {
-        const response = await fetch('/api/auth/me', {
+        const response = await fetch(`${BACKEND_URL}/api/auth/me`, {
           credentials: 'include',
         });
         const data = await response.json();
@@ -214,7 +215,7 @@ const CartPage = () => {
 
     const fetchProfilePicture = async () => {
       try {
-        const res = await fetch('/api/auth/profile-picture', {
+        const res = await fetch(`${BACKEND_URL}/api/auth/profile-picture`, {
           credentials: 'include',
         });
         const data = await res.json();
@@ -234,7 +235,7 @@ const CartPage = () => {
 
     const fetchCartItems = async () => {
   try {
-    const response = await axios.get('/api/cart/view');
+    const response = await axios.get(`${BACKEND_URL}/api/cart/view`);
     // Convert string prices to numbers
     const cartWithNumbers = response.data.cart.map(item => ({
       ...item,
@@ -269,7 +270,7 @@ const CartPage = () => {
     if (newQuantity < 1) return;
     
     try {
-      await axios.put(`/api/cart/update/${bookId}`, { quantity: newQuantity });
+      await axios.put(`${BACKEND_URL}/api/cart/update/${bookId}`, { quantity: newQuantity });
       const updatedItems = cartItems.map(item => 
         item.book_id === bookId ? { ...item, quantity: newQuantity } : item
       );
@@ -282,7 +283,7 @@ const CartPage = () => {
 
   const removeItem = async (bookId) => {
     try {
-      await axios.delete(`/api/cart/remove/${bookId}`);
+      await axios.delete(`${BACKEND_URL}/api/cart/remove/${bookId}`);
       const updatedItems = cartItems.filter(item => item.book_id !== bookId);
       setCartItems(updatedItems);
       calculateTotal(updatedItems);
@@ -293,7 +294,7 @@ const CartPage = () => {
 
   const clearCart = async () => {
     try {
-      await axios.delete('/api/cart/clear');
+      await axios.delete(`${BACKEND_URL}/api/cart/clear`);
       setCartItems([]);
       setTotalPrice(0);
     } catch (error) {

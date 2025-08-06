@@ -7,6 +7,7 @@ import {
   FiMail, FiPhone, FiUpload, FiClipboard
 } from "react-icons/fi";
 import {  FiCheckCircle } from 'react-icons/fi';
+import BACKEND_URL from '../../config';
 
 
 

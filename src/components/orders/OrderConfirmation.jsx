@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiCheckCircle, FiShoppingBag, FiHome, FiClock, FiTruck } from 'react-icons/fi';
+import BACKEND_URL from '../../config';
 
 const OrderConfirmation = () => {
   const { orderId } = useParams();
@@ -13,7 +14,7 @@ const OrderConfirmation = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`/api/orders/${orderId}`, {
+        const response = await axios.get(`${BACKEND_URL}/api/orders/${orderId}`, {
           withCredentials: true
         });
         

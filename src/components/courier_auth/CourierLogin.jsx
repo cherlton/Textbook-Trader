@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../../logo/logo.png';
+import BACKEND_URL from '../../config';
 
 export default function CourierLogin() {
   const [form, setForm] = useState({ email: "221997441@tut4life.ac.za", password: "Word" });
@@ -16,7 +17,7 @@ export default function CourierLogin() {
   setError("");
 
   try {
-    const res = await fetch("/api/courier/auth/login", {
+    const res = await fetch(`${BACKEND_URL}/api/courier/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: form.email, password: form.password }),

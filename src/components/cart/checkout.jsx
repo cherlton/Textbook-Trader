@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+import BACKEND_URL from '../../config';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const Checkout = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await axios.get('/api/cart/view', { withCredentials: true });
+        const response = await axios.get(`${BACKEND_URL}/api/cart/view`, { withCredentials: true });
         setCartItems(response.data.cart);
         setTotalPrice(Number(response.data.total_price));
        
@@ -160,7 +161,7 @@ const handleConfirmPaymentFlow = async () => {
 
 const handleCheckout = async () => {
   try {
-    const recipientResponse = await axios.post('/api/recipients/add', {
+    const recipientResponse = await axios.post(`${BACKEND_URL}/api/recipients/add`, {
       first_name: formData.first_name,
       last_name: formData.last_name,
       email: formData.email,
@@ -190,7 +191,7 @@ const handleCheckout = async () => {
       };
     });
 
-    const orderResponse = await axios.post('/api/orders/create', {
+    const orderResponse = await axios.post(`${BACKEND_URL}/api/orders/create`, {
       recipient_id: recipientId,
       cart_items: orderItems
     }, {
@@ -235,7 +236,7 @@ const handlePayment = async (orderIdToUse) => {
 
   try {
     await new Promise(resolve => setTimeout(resolve, 1500)); // mock payment delay
-    await axios.delete('/api/cart/clear', { withCredentials: true });
+    await axios.delete(`${BACKEND_URL} /api/cart/clear`, { withCredentials: true });
 
     navigate(`/order-confirmation/${orderIdToUse}`);
   } catch (err) {

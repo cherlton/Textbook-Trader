@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from '../../logo/logo.png';  // adjust path to your logo
-
+import BACKEND_URL from '../../config';
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");

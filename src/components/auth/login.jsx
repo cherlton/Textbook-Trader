@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../../logo/logo.png';
+import BACKEND_URL from '../../config';
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });

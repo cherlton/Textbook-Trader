@@ -12,6 +12,8 @@ import {
   LoadScript,
   Autocomplete
 } from '@react-google-maps/api';
+import BACKEND_URL from '../../config';
+
 
 const GetHelpPopup = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -252,7 +254,7 @@ const UploadBook = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('/api/auth/me', {
+        const response = await axios.get(`${BACKEND_URL}/api/auth/me`, {
           withCredentials: true
         });
         if (response.data) {
@@ -286,7 +288,7 @@ const UploadBook = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/auth/logout', {}, { withCredentials: true });
+      await axios.post(`${BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
       navigate('/LandingPage');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -309,7 +311,7 @@ const UploadBook = () => {
     }
 
     try {
-      const response = await axios.post('/api/books/add', formDataToSend, {
+      const response = await axios.post(`${BACKEND_URL}/api/books/add`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

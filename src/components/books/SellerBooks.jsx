@@ -10,6 +10,10 @@ import {
 import { FiEdit2 } from 'react-icons/fi';
 import {  FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+import BACKEND_URL from '../../config';
+
+
+
 const GetHelpPopup = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
