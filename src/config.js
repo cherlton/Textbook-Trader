@@ -1,1 +1,3 @@
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+// config.js
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+export default BACKEND_URL;
