@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://capsule-render.vercel.app/api?type=waving&color=27AE60,2ECC71&height=200&section=header&text=📚%20Textbook%20Trader&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Student%20Textbook%20Exchange%20Platform&descAlignY=58&descSize=20" width="100%"/>
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=2ECC71&center=true&vCenter=true&width=650&lines=Buy+%7C+Sell+%7C+Trade+textbooks+with+ease+📖;Making+education+more+affordable;Full-stack+student+marketplace)](https://git.io/typing-svg)
 
-### `npm start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[![Demo](https://img.shields.io/badge/📚_View_Demo-LinkedIn-0077B5?style=for-the-badge)](https://www.linkedin.com/feed/update/urn:li:activity:7360219911060619264/)
+[![GitHub](https://img.shields.io/badge/Source-GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cherlton/Textbook-Trader)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</div>
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💡 What is Textbook Trader?
 
-### `npm run build`
+> A full-stack marketplace where students can **buy, sell, and trade** textbooks with other students at their institution — making quality education more affordable and accessible.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🌟 Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Feature | Details |
+|---|---|
+| 📖 **Listings** | Post textbooks for sale or trade with photos |
+| 🔍 **Smart Search** | Filter by subject, grade level, or title |
+| 💬 **Messaging** | In-app chat between buyers and sellers |
+| 👤 **Auth** | Secure user registration and login |
+| ⭐ **Ratings** | Buyer/seller trust rating system |
+| 📱 **Responsive** | Fully mobile-friendly UI |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Built With
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div align="center">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</div>
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🚀 Run Locally
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/cherlton/Textbook-Trader.git
+cd Textbook-Trader
+npm install
+npm run dev
